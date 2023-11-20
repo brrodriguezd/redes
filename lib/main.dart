@@ -32,7 +32,9 @@ class MyApp extends StatelessWidget {
         colorScheme: const ColorScheme.light(),
         useMaterial3: true,
       ),
-      home: const ActivityRecognitionApp(),
+      home: const ActivityRecognitionApp(
+        prueba: false,
+      ),
     );
   }
 }
