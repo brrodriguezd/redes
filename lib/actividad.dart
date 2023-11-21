@@ -5,6 +5,7 @@ import 'package:activity_recognition_flutter/activity_recognition_flutter.dart'
     as ar;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:proyecto/prueba.dart';
@@ -30,8 +31,9 @@ Future<File> get _localFile async {
 Future<File> writeCounter(ar.ActivityEvent evento) async {
   final file = await _localFile;
   final lt = Platform.lineTerminator;
+  final location = await Geolocator.getCurrentPosition();
   final String addendum =
-      '${DateUtils.dateOnly(evento.timeStamp)},${evento.timeStamp.weekday},${evento.timeStamp.hour}:${evento.timeStamp.minute},${evento.type},${evento.confidence},$lt';
+      '${DateUtils.dateOnly(evento.timeStamp)},${evento.timeStamp.weekday},${evento.timeStamp.hour}:${evento.timeStamp.minute},${evento.type},${evento.confidence},${location.latitude},${location.longitude},${location.accuracy},$lt';
   // Write the file
   return file.writeAsString(addendum, mode: FileMode.writeOnlyAppend);
 }
