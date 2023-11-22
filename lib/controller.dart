@@ -3,14 +3,12 @@ import 'package:flutter/material.dart';
 TextEditingController respuestasController = TextEditingController();
 String? validator_;
 var respuestas = [
-  [
-    'elefante',
-  ],
+  ['elefante'],
   ['globo', 'bomba'],
   ['pulgar', 'dedo'],
-  ['canoa'],
+  ['canoa', 'bote'],
   ['ventilador'],
-  ['peine'],
+  ['peine', 'peinilla'],
   ['pera'],
   ['araña']
 ];
@@ -24,7 +22,7 @@ validarPreguntas(idx) {
       .contains(respuestasController.text.trim().toLowerCase())) {
     validator_ = 'Correcto';
   } else {
-    validator_ = 'Equivocado, la respuesta era ${respuestas[idx]}';
+    validator_ = 'La respuesta era ${respuestas[idx][0]}.';
   }
   respuestasController.text = '';
   return true;

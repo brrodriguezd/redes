@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-void errorPrompt(BuildContext context, String title, String body,
+void prompt(BuildContext context, String title, String body,
     {double titleSize = 30, double bodySize = 20}) {
   showDialog(
     context: context,

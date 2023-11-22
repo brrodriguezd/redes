@@ -1,26 +1,38 @@
 import 'package:flutter/material.dart';
-import 'package:proyecto/actividad.dart';
+import 'package:proyecto/prueba6.dart';
 
 class Prueba3 extends StatefulWidget {
-  const Prueba3({super.key});
+  final List categorias;
+  final List nombres;
+  final double puntaje;
+  const Prueba3(
+      {super.key,
+      required this.puntaje,
+      required this.categorias,
+      required this.nombres});
 
   @override
   State<StatefulWidget> createState() => _Prueba3State();
 }
 
+var puntaje3 = 0;
+
 class _Prueba3State extends State<Prueba3> {
-  var puntaje = 0;
   var correcto = false;
   var respondio = false;
   @override
   Widget build(BuildContext context) {
+    print(puntaje3);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Prueba 3'),
       ),
       body: Center(
         child: Column(children: [
-          const Text('Ingresa la fecha de hoy'),
+          const Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Text('Ingresa la fecha de hoy, año, mes y día'),
+          ),
           ElevatedButton(
             onPressed: () async {
               var fecha = await showDatePicker(
@@ -30,8 +42,17 @@ class _Prueba3State extends State<Prueba3> {
                 firstDate: DateTime(1950),
                 lastDate: DateTime(2080),
               );
+              if (fecha?.day == DateTime.now().day) {
+                puntaje3++;
+                print(puntaje3);
+              }
+              if (fecha?.month == DateTime.now().month) {
+                puntaje3++;
+                print(puntaje3);
+              }
               if (DateUtils.dateOnly(DateTime.now()) == fecha) {
-                puntaje++;
+                puntaje3++;
+                print(puntaje3);
                 correcto = true;
               }
               setState(() {
@@ -43,15 +64,18 @@ class _Prueba3State extends State<Prueba3> {
           respondio
               ? Column(
                   children: [
-                    Text((correcto ? 'Correcto' : 'Incorrecto')),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text((correcto ? 'Correcto' : 'Incorrecto')),
+                    ),
                     ElevatedButton(
                         onPressed: () {
                           Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
-                                  builder: (BuildContext context) =>
-                                      const ActivityRecognitionApp(
-                                          prueba: false)));
+                                  builder: (BuildContext context) => Prueba6(
+                                        puntaje: widget.puntaje + puntaje3,
+                                      )));
                         },
                         child: const Text('Continuar')),
                   ],

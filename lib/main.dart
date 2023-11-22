@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:proyecto/actividad.dart';
+import 'package:proyecto/prueba.dart';
 
 void main() {
   runApp(const MyApp());
@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
         colorScheme: const ColorScheme.light(),
         useMaterial3: true,
       ),
-      home: const ActivityRecognitionApp(),
+      home: const Prueba(),
     );
   }
 }
