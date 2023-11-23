@@ -72,14 +72,13 @@ class _Prueba6State extends State<Prueba6> {
               ? ElevatedButton(
                   onPressed: () {
                     for (var element in categoria) {
-                      if (pistas.contains(element)) {
-                        continue;
+                      if (!pistas.contains(element)) {
+                        setState(() {
+                          pistas.add(categoria[0]);
+                          puntaje -= 0.5;
+                        });
+                        return;
                       }
-                      setState(() {
-                        pistas.add(categoria[0]);
-                        puntaje -= 0.5;
-                      });
-                      return;
                     }
                   },
                   child: const Text('¿Pista?'))

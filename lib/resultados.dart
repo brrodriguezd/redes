@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:proyecto/actividad.dart';
 
 class Resultados extends StatelessWidget {
   final double puntaje;
@@ -10,12 +11,15 @@ class Resultados extends StatelessWidget {
       appBar: AppBar(title: const Text('Resultados')),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
-        child: Center(
-          child: Text(
+        child: Column(children: [
+          Text(
             'El puntaje final es: $puntaje/13',
             textScaleFactor: 2,
           ),
-        ),
+          ElevatedButton(
+              onPressed: () => const ActivityRecognitionApp(),
+              child: const Text('Continuar'))
+        ]),
       ),
     );
   }
