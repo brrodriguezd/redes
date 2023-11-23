@@ -58,6 +58,9 @@ class _ActivityRecognitionAppState extends State<ActivityRecognitionApp> {
   void _init() async {
     // Android requires explicitly asking permission
     if (Platform.isAndroid) {
+      /*
+      var doc = await _localFile;
+      print(await doc.readAsString());*/
       if (await Permission.activityRecognition.request().isGranted) {
         if (await Permission.location.request().isGranted) {
           if (await Permission.locationAlways.request().isGranted) {
@@ -105,7 +108,7 @@ class _ActivityRecognitionAppState extends State<ActivityRecognitionApp> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Activity Recognition'),
+        title: const Text('Recolectando datos...'),
       ),
       body: Center(
         child: ListView.builder(
