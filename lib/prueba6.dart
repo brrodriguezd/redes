@@ -20,7 +20,6 @@ class _Prueba6State extends State<Prueba6> {
   @override
   void initState() {
     puntaje = widget.puntaje;
-    print(puntaje);
     super.initState();
   }
 
