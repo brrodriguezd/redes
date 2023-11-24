@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:proyecto/prueba6.dart';
+import 'package:proyecto/prueba5.dart';
 
 class Prueba3 extends StatefulWidget {
   final List categorias;
@@ -22,7 +22,6 @@ class _Prueba3State extends State<Prueba3> {
   var respondio = false;
   @override
   Widget build(BuildContext context) {
-    print(puntaje3);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Prueba 3'),
@@ -44,15 +43,12 @@ class _Prueba3State extends State<Prueba3> {
               );
               if (fecha?.day == DateTime.now().day) {
                 puntaje3++;
-                print(puntaje3);
               }
               if (fecha?.month == DateTime.now().month) {
                 puntaje3++;
-                print(puntaje3);
               }
               if (DateUtils.dateOnly(DateTime.now()) == fecha) {
                 puntaje3++;
-                print(puntaje3);
                 correcto = true;
               }
               setState(() {
@@ -70,12 +66,33 @@ class _Prueba3State extends State<Prueba3> {
                     ),
                     ElevatedButton(
                         onPressed: () {
-                          Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (BuildContext context) => Prueba6(
-                                        puntaje: widget.puntaje + puntaje3,
-                                      )));
+                          showDialog(
+                              context: context,
+                              builder: (BuildContext context) => AlertDialog(
+                                    title: const Text(
+                                      'Instrucciones: ',
+                                    ),
+                                    content: const Text(
+                                        'Hay cuatro flechas apuntando a direcciones diferentes, por favor ponlas en orden numérico siguiendo la secuencia arriba, abajo, izquierda  y derecha'),
+                                    actions: [
+                                      ElevatedButton(
+                                        onPressed: () {
+                                          Navigator.pop(context);
+                                          Navigator.pushReplacement(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder:
+                                                      (BuildContext context) =>
+                                                          Prueba5(
+                                                            puntaje:
+                                                                widget.puntaje +
+                                                                    puntaje3,
+                                                          )));
+                                        },
+                                        child: const Text('Cerrar'),
+                                      )
+                                    ],
+                                  ));
                         },
                         child: const Text('Continuar')),
                   ],

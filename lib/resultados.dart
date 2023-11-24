@@ -13,9 +13,10 @@ class Resultados extends StatelessWidget {
         padding: const EdgeInsets.all(20.0),
         child: Column(children: [
           Text(
-            'El puntaje final es: $puntaje/13',
+            'El puntaje final es: $puntaje/16',
             textScaleFactor: 2,
           ),
+          const Spacer(),
           ElevatedButton(
               onPressed: () => const ActivityRecognitionApp(),
               child: const Text('Continuar'))
